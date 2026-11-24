@@ -86,7 +86,7 @@ This copies the sent firmware into `gSEPFW` so that SEPROM can load it. You must
 ![alt text](images/image2.png)
 
 ## Part II Modify ART Stored in Device NVRAM
-1. Clone SSHRD, create a ramdisk for iOS 15.8.8, and ask your agent to remove the permission bits `p.Bits.KernelOnly` of NVRAM key `com.apple.System.sep.art` and `com.apple.System.boot-nonce` in your kernelcache.
+1. Clone SSHRD, create a ramdisk for iOS 15.8.8 (make a 12.5.8 ramdisk if your A8 device never got iOS 13+), and ask your agent to remove the permission bits `p.Bits.KernelOnly` of NVRAM key `com.apple.System.sep.art` and `com.apple.System.boot-nonce` in your kernelcache.
 
 2. Boot into Ramdisk with SSHRD, and start a ssh connection.
 
