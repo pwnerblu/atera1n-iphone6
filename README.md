@@ -7,7 +7,7 @@ However, I've tried to restore to iOS 11.4 from iOS 15.8.8 on my iPad mini 4 Wi-
 And, everything before overwriting ART should be read only and won't compromise your data and device.
 
 ## Part I Exploit SEP and Obtain ART Key
-1. Put your device in DFU mode, and use palera1n or checkra1n to start [this](https://github.com/feiyehua/atera1n-PongoOS) PongoOS image. You can build yourself, or use the image build by Github Action.
+1. Put your device in DFU mode, and use palera1n or checkra1n to start [this](https://github.com/pwnerblu/atera1n-PongoOS) PongoOS image. You can build yourself, or use the image build by Github Action.
 
 2. Type `sep shc` in pongoterm. Something like this will appear on pongoterm: 
 ```
@@ -70,6 +70,13 @@ If that works, `sep pwned with opcode ab` will appear in pongoterm. Now you have
 ![alt text](images/image.png)
 
 On some old device such as iOS 11.4 that I restored to, PongoOS cannot automatically detect your onboard SEPOS firmware. This is because iBEC before iOS 13 only allocates the SEP firmware buffer, but they doesn't copy the image to this area. You may need to enter the Ramdisk to extract your on board SEPOS firmware.
+
+**Devices that never got iOS 13 (e.g. iPhone 6 on iOS 12):** On these devices, `gSEPFW` is always empty. You must boot an SSHRD, get the SEP firmware img4 from the root filesystem, and load it manually before running `sep observe` or `sep replay`:
+```
+/send /path/to/sep-firmware.img4
+sep fwsend
+```
+This copies the sent firmware into `gSEPFW` so that SEPROM can load it. You must do this on **every fresh boot** of PongoOS, before both `sep observe` and `sep replay`. You must also reboot the device back into PongoOS (via checkm8) between `sep observe` and `sep replay`, since observe boots SEPOS and SEP cannot be re-initialized without a reboot.
 
 5. Send SEP payload. Type `/send /absolute/path/to/payload.bin`, then `sep load`. 
 
