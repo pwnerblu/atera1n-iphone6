@@ -32,7 +32,7 @@ Save these bytes as a binary file. `scripts/hex_to_bin.py` should help you. The 
 
 3. Reboot your device into DFU and boot PongoOS once again. Enter pongoterm on your computer.
 
-4. Type `/send /absolute/path/to/previously/saved/binary.bin`, then type `scp replay 470000`. The argument is the number of tick that the first race overwrite starts. Empirically 470000 works on my iPad mini 4. If this doesn't work, SEP will panic. You can also run `sep observe` to see when does the `observed_value` change. Take this as an example:
+4. Type `/send /absolute/path/to/previously/saved/binary.bin`, then type `sep replay 470000`. The argument is the number of tick that the first race overwrite starts. Empirically 470000 works on my iPad mini 4. If this doesn't work, SEP will panic. You can also run `sep observe` to see when does the `observed_value` change. Take this as an example:
 ```
 #==================
 #
