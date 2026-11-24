@@ -1,3 +1,4 @@
 [submodule "atera1n-PongoOS"]
 	path = atera1n-PongoOS
 	url = https://github.com/pwnerblu/atera1n-PongoOS.git
+	branch = A8-SEP-Exploit
